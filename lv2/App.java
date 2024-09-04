@@ -21,16 +21,21 @@ public class App {
             System.out.print("숫자 입력 : ");
             int secondNumber = sc.nextInt();
 
-            calculator.calculator(operation, firstNumber, secondNumber);
-            System.out.print("더 계산하시겠습니까 ? (exit 입력시 종료) : ");
-            String answer = sc.next();
-            // 입력된 값이 exit라면 flag를 false로 만들어서 while문 탈출
-            if (answer.equals("exit")) {
-                flag = false;
+            if(operation.contains("+") || operation.contains("-") || operation.contains("*") || operation.contains("/")) {
+                calculator.calculator(operation, firstNumber, secondNumber);
+                System.out.print("더 계산하시겠습니까 ? (exit 입력시 종료) : ");
+                String answer = sc.next();
+                // 입력된 값이 exit라면 flag를 false로 만들어서 while문 탈출
+                if (answer.equals("exit")) {
+                    flag = false;
+                }
+                // 그게 아니라면 while문 반복
+                else{
+                    flag = true;
+                }
             }
-            // 그게 아니라면 while문 반복
             else{
-                flag = true;
+                System.out.println("사칙연산 기호 다시 입력해주세요.");
             }
         }
         // 리스트의 저장된 값 모두 가져옴
@@ -38,6 +43,7 @@ public class App {
 
         // 보내준 idxNumber에 해당하는 값 가져옴
         int arrGetNum = calculator.getArrNumber(0);
+        System.out.println(arrGetNum);
 
         // 리스트의 저장된 데이터 수정
         calculator.setArrNumbers(0,30);
