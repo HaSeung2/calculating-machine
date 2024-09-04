@@ -5,14 +5,12 @@ import java.util.ArrayList;
 public class Calculator {
     private ArrayList<Integer> arrNumbers = new ArrayList<Integer>();
     int result;
-    String oper;
 
     // 연산 후 연산 결과 리스트에 저장 및 전달.
     public void calculator(String operation, int firstNumber, int secondNumber) {
         boolean flag = true;
+        // while 조건문을 flag = true로 해두고 반복하게함.
         while (flag) {
-
-            // while 조건문을 flag = true로 해두고 반복하게함.
             switch (operation) {
                 case "+":
                     arrNumbers.add(firstNumber + secondNumber);
@@ -27,18 +25,20 @@ public class Calculator {
                     arrNumbers.add(firstNumber / secondNumber);
                     break;
             }
-            // 사칙연산 기호를 알맞게 쳐서 break로 스위치 문을 빠져나온다면 flag를 false로 바꾸어서
+            // break로 스위치 문을 빠져나온다면 flag를 false로 바꾸어서
             // while문 탈출
             flag = false;
         }
-        result = arrNumbers.get(arrNumbers.size() - 1);
-        System.out.println("결과는 : " + result);
+            result = arrNumbers.get(arrNumbers.size() - 1);
+            System.out.println("결과는 : " + result);
     }
 
     // arrNumbers 리스트에 저장된 모든 값 전달
     public void getArrNumbersAll() {
+        int num = 1;
         for (Integer arrNumber : arrNumbers) {
-            System.out.println(arrNumber);
+            System.out.println(num+". "+arrNumber);
+            num++;
         }
     }
 
@@ -48,7 +48,8 @@ public class Calculator {
     }
 
     // arrNumbers 리스트에 저장된 값 수정
-    public void setArrNumbers(int idxNumber, int changeNumber) {
+    public void setArrNumbers(int targetNumber, int changeNumber) {
+        int idxNumber = targetNumber-1;
         arrNumbers.set(idxNumber, changeNumber);
     }
 
@@ -62,7 +63,6 @@ public class Calculator {
         // 삭제 완료 문구 출력
         else {
             arrNumbers.remove(0);
-            System.out.println("가장 먼저 저장된 데이터 삭제 완료");
         }
     }
 }
