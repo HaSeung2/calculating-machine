@@ -3,16 +3,22 @@ package calculatingMachine.lv2;
 import java.util.Scanner;
 
 public class App {
+    // appStart()안에서 CalculatorApp 클래스를 객체화 하고 숫자타입이나 연산자 기호 타입을 잘못 쳤을때 예외 발생으로
+    // 반복문의 처음으로 돌아가 다시 시작할 때 리스트안의 내용들이 다 날라가는데
+    // 클래스 필드의 선언해두고 실행을하면 예외 발생으로 반복문의 처음으로 돌아가 다시 시작해도 리스트 안의 내용들이 그대로 남아있다.
+    // exit로 실행을 중지 하기 전까지 데이터들이 리스트안에 계속 쌓인다.
+    // exit로 실행을 중지 하고 다시 재실행하면 리스트 데이터들은 다시 리셋된다.
+    CalculatorApp app = new CalculatorApp();
     public static void main(String[] args) {
         boolean mainFlag = false;
-        App app = new App();
+        App apple = new App();
         //처음에 mainFlag에 false를 기본값으로 주고
         // app.appStart 메서드에서 마지막에 exit를 입력하면
         // return true를 받게 하여 while문 탈출.
         // 그 외에 예외처리나 exit를 입력하지 않을 시에는 계속 반복.
         while(!mainFlag) {
             try{
-                mainFlag = app.appStart();
+                mainFlag = apple.appStart();
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -21,7 +27,6 @@ public class App {
     }
     public boolean appStart() throws Exception {
         Scanner sc = new Scanner(System.in);
-        CalculatorApp app = new CalculatorApp();
         // exit를 입력받으면 flag를 false로 바꿔 while문 종료.
         boolean flag = true;
         while (flag) {
