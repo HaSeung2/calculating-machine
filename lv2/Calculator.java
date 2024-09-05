@@ -12,6 +12,7 @@ public class Calculator {
         this.operation = operation;
     }
 
+    // 들어온 연산 기호에 따라 operation을 담는다.
     public void setUpOperation(String operation) {
         switch (operation) {
             case "+":
