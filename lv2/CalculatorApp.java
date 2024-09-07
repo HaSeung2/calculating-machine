@@ -65,14 +65,9 @@ public class CalculatorApp {
     // 받아온 입력값이 정수or실수가 맞는지 확인 후 맞다면 리스트 값을 수정해주는 set 메서드 실행
     // 아니라면 예외처리
     public void setArrNumber(String targetNumber, String changeNumber) throws Exception{
-        if(Pattern.matches(NUMBER_REG, targetNumber)){
-           if(Pattern.matches(Double_REG, changeNumber)){
+        if(Pattern.matches(NUMBER_REG, targetNumber) || Pattern.matches(Double_REG, changeNumber)){
                int idxNumber = Integer.parseInt(targetNumber)-1;
                calculator.setArrNumbers(idxNumber, Double.parseDouble(changeNumber));
-           }
-           else{
-               throw new BadInputException("정수");
-           }
         }
         else{
             throw new BadInputException("정수");

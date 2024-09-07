@@ -42,7 +42,7 @@ public class App {
             app.setSecondNumber(secondNumber);
 
             // 0으로 나누기를 시도 할시에 이 if문 안으로 들어와 출력문 수행
-            if ((firstNumber.equals("0") || secondNumber.equals("0")) && operation.equals("/")) {
+            if (secondNumber.equals("0") && operation.equals("/")) {
                 System.out.println("0으로는 나눌 수 없습니다.");
                 continue;
             }
