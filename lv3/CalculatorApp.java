@@ -62,7 +62,6 @@ public class CalculatorApp {
             throw new BadInputException("연산 기호");
         }
         this.operator = OperatorType.getOperator(operation);
-
     }
 
     // 받아온 인덱스 번호의 값 전달해주는 메서드 실행.
@@ -79,6 +78,7 @@ public class CalculatorApp {
         return result;
     }
 
+    // 입력 받은 값보다 큰 값들 리스트 받아서 빠른for문으로 sout 출력
     public void getLargeNumber(double number) {
         List<Double> list = doubleCalculator.getArrayList();
         List<Double> lageNumbers = operator.getLargeNumber(list, number);

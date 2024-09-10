@@ -66,6 +66,8 @@ public enum OperatorType {
 
         // 리스트의 저장된 값들 중 가장 높은 값 전달.
         public double getMaxNumber(List<Double> list){
+                // mapToDouble은 스트림을 DoubleStream으로 변환해주는 메소드이다.
+                // 이 외에도 mapToInt, mapToLong, mapToObject 메서드들이 있다.
           return list.stream().mapToDouble(li -> li).max().orElseThrow(NoSuchElementException::new);
         }
 
