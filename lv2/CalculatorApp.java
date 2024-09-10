@@ -2,13 +2,12 @@ package calculatingMachine.lv2;
 
 import java.util.regex.Pattern;
 
+// 예외 처리 후 메서드 실행 클래스
 public class CalculatorApp {
     private final Calculator calculator = new Calculator();
     private static final String OPERATION_REG = "[+\\-*/]";
     private static final String NUMBER_REG = "^[0-9]*$";
     private static final String Double_REG = "^([0-9]{1}\\d{0,2}|0{1})(\\.{1}\\d{0,1})*$";
-    private double firstNumber;
-    private double secondNumber;
 
     public void setOperation(String operation) {
         calculator.setUpOperation(operation);
@@ -18,7 +17,7 @@ public class CalculatorApp {
     // double 형태로 형변환을 하는 동시에 firstNumber에 값을 저장.
     public void setFirstNumber(String firstNumber) throws Exception {
         if(Pattern.matches(Double_REG,firstNumber)){
-            this.firstNumber = Double.parseDouble(firstNumber);
+            calculator.setFirstNumber(Double.parseDouble(firstNumber));
         }
         else{
             throw new BadInputException("정수, 실수");
@@ -28,7 +27,7 @@ public class CalculatorApp {
     // double 형태로 형변환을 하는 동시에 secondNumber에 값을 저장.
     public void setSecondNumber(String secondNumber) throws Exception {
         if(Pattern.matches(Double_REG,secondNumber)){
-            this.secondNumber = Double.parseDouble(secondNumber);
+            calculator.setSecondNumber(Double.parseDouble(secondNumber));
         }
         else{
             throw new BadInputException("정수, 실수");
@@ -59,7 +58,7 @@ public class CalculatorApp {
 
     // 연산과 연산 결과 리스트의 저장하는 메서드 실행
     public double calculator(){
-        return calculator.calculator(this.firstNumber,this.secondNumber);
+        return calculator.calculator();
     }
 
     // 받아온 입력값이 정수or실수가 맞는지 확인 후 맞다면 리스트 값을 수정해주는 set 메서드 실행
@@ -76,6 +75,15 @@ public class CalculatorApp {
     
     // 가장 맨 앞에 저장되어 있는 데이터 삭제하는 메서드 실행
     public void removeArrNumber(){
-        calculator.removeArrNumber();
+        // isEmpty() 메서드로 데이터가 비어 있는지 확인후
+        // 비어있지않다면 삭제 메서드 실행.
+        if(!calculator.arrNumbersIsEmpty()){
+            calculator.removeArrNumber();
+            System.out.println("삭제 완료 !");
+        }
+        // 데이터가 하나도 없다면 삭제할 데이터가 없습니다. 출력
+        else{
+            System.out.println("삭제 할 데이터가 없습니다");
+        }
     }
 }
