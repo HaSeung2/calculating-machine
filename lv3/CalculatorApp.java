@@ -40,18 +40,9 @@ public class CalculatorApp {
         doubleCalculator.setSecondNumber(Double.parseDouble(secondNumber));
     }
 
-    // 리스트의 저장된 모든 값을 가져와서 스트림을이용해 sout로 값들 출력
-    public void getArrayList() {
-        List<Double> list = doubleCalculator.getArrayList();
-        // stream forEach문을 이용하여 sout를 출력하려 했지만
-        // 람다 표현식에 사용되는 변수는 final 또는 유사 final이어야 하기 때문에 리스트의 값들 앞에 1. 2. 이런식으로 붙여줄 수가 없다.
-        //list.stream().toList().forEach(li -> System.out.println(li.doubleValue()));
-        int num = 1;
-        // 그래서 향상된 for문을 이용하여 출력해준다.
-        for (Double li : list) {
-            System.out.println(num + ". " + li);
-            num++;
-        }
+    // 리스트의 저장된 모든 값을 가져와서 list 형식으로 전달
+    public List <Double> getArrayList() {
+        return doubleCalculator.getArrayList();
     }
 
     // 입력 받은 연산 기호가 연산기호 이외에 다른 문자가 아닌지 판별 후
@@ -78,16 +69,14 @@ public class CalculatorApp {
         return result;
     }
 
-    // 입력 받은 값보다 큰 값들 리스트 받아서 빠른for문으로 sout 출력
-    public void getLargeNumber(double number) {
+    // 입력 받은 값보다 큰 값들 리스트 형태로 받아서 전달.
+    public List <Double> getLargeNumber(String number) throws Exception {
         List<Double> list = doubleCalculator.getArrayList();
-        List<Double> lageNumbers = operator.getLargeNumber(list, number);
-        int num = 1;
-        for (double li : lageNumbers) {
-            System.out.println(num + ". " + li);
-            num++;
+        if(!Pattern.matches(Reg.DOUBLE_LEG.reg, number) || !Pattern.matches(Reg.NUMBER_REG.reg, number)) {
+            throw new BadInputException("정수, 실수");
         }
-    }
+            return operator.getLargeNumber(list, Double.parseDouble(number));
+        }
 
     // 받아온 입력값이 정수or실수가 맞는지 확인 후 맞다면 리스트 값을 수정해주는 set 메서드 실행
     // 아니라면 예외처리

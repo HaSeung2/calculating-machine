@@ -38,7 +38,12 @@ public enum OperatorType {
         Add ("+", Double::sum),
         Subtract ("-", (x,z) -> x - z),
         Multiply ("*", (x,z) -> x * z),
-        Divide ("/", (x,z) -> x / z);
+        Divide ("/", (x,z) -> {
+                if(z == 0){
+                        throw new ArithmeticException("0으로 나눌 수 없습니다");
+                }
+                     return x / z;
+        });
 
         private final String symbol;
         private final BiFunction<Double, Double, Double> function;
@@ -60,8 +65,7 @@ public enum OperatorType {
 
         //  리스트의 저장된 값들 중에서 입력받은 값보다 큰 값들만 추출하여 전달
         public List <Double> getLargeNumber(List<Double> list, double number){
-          List <Double> nums = list.stream().filter(num -> num > number).toList();
-          return nums;
+          return list.stream().filter(num -> num > number).toList();
         }
 
         // 리스트의 저장된 값들 중 가장 높은 값 전달.
