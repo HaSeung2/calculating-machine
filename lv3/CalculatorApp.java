@@ -34,7 +34,7 @@ public class CalculatorApp {
     // 입력받아온 숫자가 숫자형식인지 정규식으로 비교한 후 숫자가 맞다면
     // double 형태로 형변환을 하는 동시에 secondNumber에 값을 저장.
     public void setSecondNumber(String secondNumber) throws Exception {
-        if (!Pattern.matches(Reg.DOUBLE_LEG.reg, secondNumber) || !Pattern.matches(Reg.DOUBLE_LEG.reg, secondNumber)) {
+        if (!Pattern.matches(Reg.DOUBLE_LEG.reg, secondNumber) || !Pattern.matches(Reg.NUMBER_REG.reg, secondNumber)) {
             throw new BadInputException("정수, 실수");
         }
         doubleCalculator.setSecondNumber(Double.parseDouble(secondNumber));
