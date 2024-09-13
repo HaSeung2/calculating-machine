@@ -1,4 +1,4 @@
-package calculatingMachine.lv3;
+package calculatingMachine.lv3.exception;
 
 public class BadInputException extends Exception{
     public BadInputException(String e) {

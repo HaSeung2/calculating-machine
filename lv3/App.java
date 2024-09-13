@@ -33,13 +33,13 @@ public class App {
             app.setFirstNumber(firstNumber);
             System.out.print("사칙연산 기호 입력(+,-,*,/) : ");
             String operation = sc.nextLine();
-            app.setUpOperation(operation);
+            app.getOperationAndSet(operation);
             System.out.print("숫자 입력 : ");
             String secondNumber = sc.nextLine();
             app.setSecondNumber(secondNumber);
 
 
-            System.out.println("결과 : " + app.calculator());
+            System.out.println("결과 : " + app.calculate());
             System.out.print("지금까지 계산하신 결과값들을 보시겠습니까 ? (Y, N) : ");
             String resultAnswer = sc.nextLine();
 
@@ -71,7 +71,12 @@ public class App {
                     // Y, y 이외에 다른 것 을 치면 아래로 내려가
                     // 다시 시작하거나 exit를 입력하여 while문 탈출
                     if (removeAnswer.equals("Y") || removeAnswer.equals("y")) {
-                        app.indexZeroRemove();
+                        if(app.indexZeroRemover()){
+                            System.out.println("처음에 있는 숫자 삭제 완료 !");
+                        }
+                        else{
+                            System.out.println("더 이상 삭제할 데이터가 없습니다.");
+                        }
                         // getArrayList로 받아온 리스트 형태의 값들을 forEach문으로 하나하나 출력해줌.
                         app.getArrayList().forEach(System.out::println);
                     }

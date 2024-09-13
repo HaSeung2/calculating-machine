@@ -1,8 +1,6 @@
 package calculatingMachine.lv3.operation;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 
 public enum OperatorType {
@@ -57,26 +55,8 @@ public enum OperatorType {
          return function.apply(x, z);
         }
 
-        // static을 붙이지 않으면 this.operator is null이라는 오류가 발생하는데 왜 그런건지 모르겠다.
         public static OperatorType getOperator(String operator){
         return Arrays.stream(OperatorType.values()).filter(oper -> oper.symbol.equals(operator)).findFirst().
                 orElseThrow(() -> new IllegalArgumentException("Unknown operator: " + operator));
-        }
-
-        //  리스트의 저장된 값들 중에서 입력받은 값보다 큰 값들만 추출하여 전달
-        public List <Double> getLargeNumber(List<Double> list, double number){
-          return list.stream().filter(num -> num > number).toList();
-        }
-
-        // 리스트의 저장된 값들 중 가장 높은 값 전달.
-        public double getMaxNumber(List<Double> list){
-                // mapToDouble은 스트림을 DoubleStream으로 변환해주는 메소드이다.
-                // 이 외에도 mapToInt, mapToLong, mapToObject 메서드들이 있다.
-          return list.stream().mapToDouble(li -> li).max().orElseThrow(NoSuchElementException::new);
-        }
-
-        // 리스트의 저장된 값들 중 가장 작은 값 전달.
-        public double getMinNumber(List <Double> list){
-          return list.stream().mapToDouble(li -> li).min().orElseThrow(NoSuchElementException::new);
         }
 }
